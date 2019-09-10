@@ -1,22 +1,23 @@
 <?php
-?>
-<link rel="stylesheet" type="text/css" href="<? echo get_template_directory_uri()?>/fellow_admin/assets/main_style.css">
-<style type="text/css">
-	
-
-		
-</style>
-<?
 
 /**
  * Add fellow all callback fuctions 
- */
-	require get_template_directory() . '/fellow_admin/custom_functions.php';
+*/
+require get_template_directory() . '/fellow_admin/custom_functions.php';
 
-	global $current_user;
+/**
+ * Add external css in admin fuctions main_style.css 
+ */
+function wpdocs_enqueue_custom_admin_style() {
+        wp_register_style( 'custom_wp_admin_css', get_template_directory_uri() . '/fellow_admin/assets/main_style.css', false, '1.0.0' );
+        wp_enqueue_style( 'custom_wp_admin_css' );
+}
+add_action( 'admin_enqueue_scripts', 'wpdocs_enqueue_custom_admin_style' );
+
+global $current_user;
 $current_user = wp_get_current_user();
-    // check current user role 
-	$check_userrole=$current_user->roles[0];
+// check current user role 
+$check_userrole=$current_user->roles[0];
 /**
 * This function use for register a Agencies menu and sub menus in admin dashboard
 */
