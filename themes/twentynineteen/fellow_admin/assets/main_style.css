@@ -1,0 +1,108 @@
+/* style for hide profile page un wanted sections*/
+		.user-edit-php .user-rich-editing-wrap, 
+		.user-edit-php .user-syntax-highlighting-wrap,
+		.user-edit-php.user-admin-color-wrap,
+		.user-edit-php .user-admin-color-wrap,
+		.user-edit-php .user-comment-shortcuts-wrap,
+		.user-edit-php .show-admin-bar,
+		.user-edit-php .user-description-wrap,
+		.user-edit-php .user-profile-picture,
+		.user-edit-php .user-pass1-wrap,
+		.user-edit-php .user-url-wrap,
+		.user-edit-php .user-display-name-wrap,
+		.user-edit-php .user-nickname-wrap,
+		.user-edit-php .user-last-name-wrap{
+		display:none;
+		}
+
+		/*.profile-php .user-rich-editing-wrap, 
+		.profile-php .user-syntax-highlighting-wrap,
+		.profile-php.user-admin-color-wrap,
+		.profile-php .user-admin-color-wrap,
+		.profile-php .user-comment-shortcuts-wrap,
+		.profile-php .show-admin-bar,
+		.profile-php .user-description-wrap,
+		.profile-php .user-profile-picture,
+		.profile-php .user-pass1-wrap,
+		.profile-php .user-url-wrap,
+		.profile-php .user-display-name-wrap,
+		.profile-php .user-nickname-wrap,
+		.profile-php .user-last-name-wrap{
+		display:none;
+		}*/
+
+		.users-php .column-email, 
+		.users-php .column-posts{
+			display:none;
+		}
+
+		.user-new-php .user-pass1-wrap{
+			display: none;
+		}
+
+		.user-new-php #ure_select_other_roles{
+			display: none;
+		}
+		#profile-page h3{
+			display: none;
+		}
+
+
+		/* css of login page */
+		#login h1 a, .login h1 a {
+		height:65px;
+		width:320px;
+		background-size: 320px 65px;
+		background-repeat: no-repeat;
+        	padding-bottom: 30px;
+
+        }
+		.login-action-login{
+			background-color: #3a90b3;
+		}
+		.login-action-login .fellow_logo{
+			position: absolute;
+			top: 22%;
+			left: 41%;
+			color: #0f0f0f;
+			text-transform: uppercase;
+			font-size: 36px;
+
+		}
+		.login .button-primary {
+			float: none!important;
+			margin-top: 10px!important;
+			width: 100%;
+		}
+		.login-action-login #login {
+			width: 500px;
+			padding: 8% 0 0;
+			margin: auto;
+		}
+		.login-action-login #backtoblog{
+			display:none;
+		}
+		.login-action-login .button.button-large {
+			height: 45px!important;
+
+		}
+		.login-action-login form{
+			border-radius: 18px!important;
+			position: relative;
+		}
+		.login-action-login .forgetmenot{
+			margin-top: 20px;
+
+		}
+		.fellow_logo{
+			color:#fff!important;
+		}
+		.login-action-login #nav{
+			float: right;
+			position: absolute;
+			right: 0;
+			bottom: 100px;
+		}
+		.login-action-login #login{
+			position: relative;
+		}
