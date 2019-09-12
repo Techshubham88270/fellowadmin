@@ -110,14 +110,23 @@ class Agencies_List_Table extends WP_List_Table {
 			// Array of WP_User objects.
 			$agencies_array = array();
 			foreach ( $blogusers as $user ) {
+    //get user counts of perticular agency
+	$all_subs_qry = new WP_User_Query( array( 'role__in' => array('Subscriber'), 'meta_query' => array(
+		array(
+		    'key'     => 'agencyid',
+		    'value'   => $user->data->ID,
+		    'compare' => '='
+		),		        
+	), 'count_total' => true));
+	$agency_user_count = $all_subs_qry->get_total();
 				
 				//fetch registration number of user by usermeta
 				$reg_code=get_user_meta( $user->data->ID, 'reg_code' );
 				//create array of data for agencies list table
 				$agencies_array[] = array(
 					'title' => '<a href="'.get_bloginfo('url').'/wp-admin/admin.php?page=add_new_agency&&agency_id='.$user->data->ID.'">'.$user->data->user_login.'</a><br><span class="edit"><a href="'.get_bloginfo('url').'/wp-admin/admin.php?page=add_new_agency&&agency_id='.$user->data->ID.'">Edit</a></span>',
-					'users' => '10', 
-					'show_users' => '<a href="#">Show Users</a>',
+					'users' => $agency_user_count, 
+					'show_users' => '<a href="'.get_bloginfo('url').'/wp-admin/users.php?user_agencyid='.$user->data->ID.'">Show Users</a>',
 					'reg_code' => '<input type="text" value="'.$reg_code[0].'">',
 					'date_created' => $user->data->user_registered,
 					'id' => $user->data->ID,

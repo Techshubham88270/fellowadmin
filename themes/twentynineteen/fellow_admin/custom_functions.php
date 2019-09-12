@@ -43,7 +43,7 @@ ob_start();
 			echo '<br>';
 		}
 
-	 }
+	}
    /**
    * This callback function use for Add new Agencies
    *
@@ -310,7 +310,7 @@ ob_start();
 	    </table>
 	    
 	    <?php
-	 } 
+	} 
 	/**
    * This callback function use for Update users Contact number and action from user update page
    *
@@ -332,7 +332,8 @@ ob_start();
 	* function call in main.php with "manage_users_columns" wordpress hook.
 	*/
 
-	function add_column_agency( $column ) {
+	function add_column_agency( $column ) 
+	{
 	    $column['name_agency'] = 'Agency';
 	    return $column;
 	}
@@ -341,25 +342,27 @@ ob_start();
 	* this will add column value in user list table
 	* function call in main.php with "manage_users_custom_column" wordpress hook.
 	*/
-	function add_column_value_agency( $val, $column_name, $user_id ) {
+	function add_column_value_agency( $val, $column_name, $user_id ) 
+	{
 
-	// Fetch agencyid of user from user meta
-	$agency_id=get_user_meta( $user_id, 'agencyid' );
-	$agency_name=get_userdata( $agency_id[0] );
+		// Fetch agencyid of user from user meta
+		$agency_id=get_user_meta( $user_id, 'agencyid' );
+		$agency_name=get_userdata( $agency_id[0] );
 
-	    switch($column_name) {
-	        case 'name_agency' :
-	            return '<a href="http://localhost/fellowadmin/wp-admin/user-edit.php?user_id='.$agency_id[0].'">'.$agency_name->data->user_login.'</a>';
-	            break;
-	           default:
-	    }
+		    switch($column_name) {
+		        case 'name_agency' :
+		            return '<a href="http://localhost/fellowadmin/wp-admin/user-edit.php?user_id='.$agency_id[0].'">'.$agency_name->data->user_login.'</a>';
+		            break;
+		           default:
+		    }
 	}
 
 	/* 
 	* callback function for add hidden input field for set agency id
 	* function call in main.php with "user_new_form" wordpress hook.
 	*/
-	function agencyid_add_field() {
+	function agencyid_add_field()
+	{
 		$current_user = wp_get_current_user();
 	      ?>
 		    <table class="form-table">
@@ -384,7 +387,8 @@ ob_start();
 	* callback function for add agency id in meta field of current register user
 	* function call in main.php with "user_register" wordpress hook.
 	*/
-	function agencyid_save_inregistered_usermeta( $user_id)  {
+	function agencyid_save_inregistered_usermeta( $user_id)  
+	{
 		$current_user = wp_get_current_user();
 		// add agencyid in user meta
 		$agencyid=$_POST['agency_userid'];
@@ -405,11 +409,16 @@ ob_start();
 	function filter_users_by_agencies($query)
 	{
 		$current_user = wp_get_current_user();
-	
-
+		$user_role=$current_user->roles[0];
 		global $pagenow;
 		if (is_admin() && 'users.php' == $pagenow) {
-			$meta_query = array (				
+			/*
+			* display list of user on the base of user roles
+			* if agencyadmin login only list of their users will show
+			*/
+
+			if($user_role=="agencyadmin"){
+				$meta_query = array (				
 				array (
 					'key' => 'agencyid',
 					'value' => $current_user->data->ID,
@@ -417,6 +426,20 @@ ob_start();
 				)
 			);
 			$query->set('meta_query', $meta_query);
+
+			}
+			// if administrator login and will access user by "Show User" users will show on the base of agency
+			elseif(isset($_GET['user_agencyid']) && $user_role == "administrator"){
+				$meta_query = array (				
+				array (
+					'key' => 'agencyid',
+					'value' => $_GET['user_agencyid'],
+					'compare' => '='
+				)
+			);
+			$query->set('meta_query', $meta_query);
+			
+			}
 		}
 	}
 
@@ -425,22 +448,23 @@ ob_start();
 	* agencies list page of administrator and user page of agencyadmin 
 	*/
 
-	function my_login_redirect( $redirect_to, $request, $user ) {
-    //is there a user to check?
-    if (isset($user->roles) && is_array($user->roles)) {
-        //check if login user is agencyadmin
-       		if (in_array('agencyadmin', $user->roles)) {
-	            // redirect them to their user list of perticular agency 
-	            $redirect_to =  get_bloginfo('url')."/wp-admin/users.php";
+	function fellow_login_redirect( $redirect_to, $request, $user ) 
+	{
+	    //is there a user to check?
+	    if (isset($user->roles) && is_array($user->roles)) {
+	        //check if login user is agencyadmin
+	       		if (in_array('agencyadmin', $user->roles)) {
+		            // redirect them to their user list of perticular agency 
+		            $redirect_to =  get_bloginfo('url')."/wp-admin/users.php";
 
-	        }
-	          //check for administrator
-	        if (in_array('administrator', $user->roles)) {
-	            // redirect them to list of all agencies if login user is administrator 
-	            $redirect_to =  get_bloginfo('url')."/wp-admin/admin.php?page=agencies";
-	        }
-    	}
-    return $redirect_to;
+		        }
+		          //check for administrator
+		        if (in_array('administrator', $user->roles)) {
+		            // redirect them to list of all agencies if login user is administrator 
+		            $redirect_to =  get_bloginfo('url')."/wp-admin/admin.php?page=agencies";
+		        }
+	    	}
+	    return $redirect_to;
 	}
 
 
@@ -448,7 +472,7 @@ ob_start();
 	* callback function for redirect url when any user will access any other page by url
 	* agencies list page of administrator and user page of agencyadmin 
 	*/
-	function custome_url_redirect() {
+	function fellow_custome_url_redirect() {
 		global $current_user;
 		$current_user = wp_get_current_user();
 		$userrole=$current_user->roles[0];
@@ -470,5 +494,134 @@ ob_start();
 		else {
 			wp_redirect(admin_url());
 			exit();
+		}
+	}
+
+	/*
+	* This hook will use to style of login page of wordpress/fellow admin
+	*  
+	*/
+	function fellow_login_page_style() 
+	{ ?>
+		<style type="text/css">
+		/* css of login page */
+		#login h1 a, .login h1 a {
+			background-image: url(<?php echo get_stylesheet_directory_uri(); ?>/images/site-login-logo.png);
+			height:65px;
+			width:320px;
+			background-size: 320px 65px;
+			background-repeat: no-repeat;
+			padding-bottom: 30px;
+
+	    }
+		.login-action-login{
+			background-color: #3a90b3;
+		}
+		.login-action-login .fellow_logo{
+			position: absolute;
+			top: 22%;
+			left: 41%;
+			color: #0f0f0f;
+			text-transform: uppercase;
+			font-size: 36px;
+
+		}
+		.login .button-primary {
+			float: none!important;
+			margin-top: 10px!important;
+			width: 100%;
+		}
+		.login-action-login #login {
+			width: 500px;
+			padding: 8% 0 0;
+			margin: auto;
+		}
+		.login-action-login #backtoblog{
+			display:none;
+		}
+		.login-action-login .button.button-large {
+			height: 45px!important;
+
+		}
+		.login-action-login .forgetmenot{
+			margin-top: 20px;
+
+		}
+		.fellow_logo{
+			color:#fff!important;
+		}
+		.login-action-login #nav{
+			float: right;
+			position: absolute;
+			right: 0;
+			bottom: 10px;
+		}
+		.login-action-login #login{
+			position: relative;
+		}
+	    .cus_text{
+	    	position: absolute;
+			bottom: 10px;
+	    }  
+	    .cus_logo{
+			position: absolute;
+			top: 20px;
+			text-align: center;
+			left: 36%;
+
+	    }
+	    .cus_logo p{
+			padding-top:15px;
+			color: #444;
+			font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+			font-size: 14px;
+	    }
+	    .login-action-login form#loginform{
+			position: relative;
+			margin-top: -100px!important;
+			padding: 100px 24px 46px!important;
+			background: #f5f3f3!important;
+	    }
+	    .block_msg{
+		    background: #dc3232cf;
+		    color: #fff;
+		    padding: 20px!important;
+		    font-size: 18px;
+		    position: absolute;
+		    top: 17%;
+		    left: 34.5%;
+		    width: 453px;
+	    }
+
+		</style>
+	<?php }
+
+	/*
+	* This hook will use to add logo and custome text on login page of wordpress/fellow admin
+	*  
+	*/
+	function fellow_login_logo_title()
+	{?>
+		<div class="cus_logo">
+			<h2>Fellow Admin</h2>
+			<p class="">Who's knocking ?</p>
+		</div>
+	    <p class="cus_text">Don't have an account</p>
+	<?}
+
+    /*
+	* callback function for block users  
+	* this function will call with wp_authenticate 
+	*/
+	function fellow_block_user( $user, $username, $password ) 
+	{
+		if (!empty($username) && !empty($password)) {
+			$action= get_user_meta($user->ID,"action");
+			// echo $action[0];
+			if($action[0]=="block"){
+				echo "<h4 class='block_msg'>Your account is blocked</h4></br>";
+			}else{
+					return $user;
+			}
 		}
 	}

@@ -15,7 +15,7 @@
 		display:none;
 		}
 
-		/*.profile-php .user-rich-editing-wrap, 
+		.profile-php .user-rich-editing-wrap, 
 		.profile-php .user-syntax-highlighting-wrap,
 		.profile-php.user-admin-color-wrap,
 		.profile-php .user-admin-color-wrap,
@@ -27,9 +27,11 @@
 		.profile-php .user-url-wrap,
 		.profile-php .user-display-name-wrap,
 		.profile-php .user-nickname-wrap,
-		.profile-php .user-last-name-wrap{
+		.profile-php .user-last-name-wrap,
+		.profile-php .user-action-wrap,
+		.profile-php .user-sessions-wrap{
 		display:none;
-		}*/
+		}
 
 		.users-php .column-email, 
 		.users-php .column-posts{

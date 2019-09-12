@@ -8,11 +8,12 @@ require get_template_directory() . '/fellow_admin/custom_functions.php';
 /**
  * Add external css in admin fuctions main_style.css 
  */
-function wpdocs_enqueue_custom_admin_style() {
+function fellow_main_admin_style() {
         wp_register_style( 'custom_wp_admin_css', get_template_directory_uri() . '/fellow_admin/assets/main_style.css', false, '1.0.0' );
         wp_enqueue_style( 'custom_wp_admin_css' );
+        wp_enqueue_script( 'custome_jquery', "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js", array(), '1.1', true );
 }
-add_action( 'admin_enqueue_scripts', 'wpdocs_enqueue_custom_admin_style' );
+add_action( 'admin_enqueue_scripts', 'fellow_main_admin_style' );
 
 global $current_user;
 $current_user = wp_get_current_user();
@@ -21,7 +22,7 @@ $check_userrole=$current_user->roles[0];
 /**
 * This function use for register a Agencies menu and sub menus in admin dashboard
 */
-if($check_userrole=='administrator'){
+
 
 function agencies_menu_function(){
   add_menu_page('Agencies', 'Agencies', 'manage_options', 'agencies', 'show_all_agencies_list');
@@ -29,7 +30,6 @@ function agencies_menu_function(){
   add_submenu_page( 'agencies', 'Add New', 'Add New', 'manage_options', 'add_new_agency', 'add_new_agencies');
 }
 add_action('admin_menu', 'agencies_menu_function');
-}
 
 
 /**
@@ -68,16 +68,12 @@ if($check_userrole == "agencyadmin"){
 	/*user_register hook for add agency id in meta field of current register user
 	*/
 	add_action( 'user_register', 'agencyid_save_inregistered_usermeta', 100 );
-
-    /* 
-    * this filter "pre_get_users" for display list of all users for perticular agency
-	*/
-	add_filter('pre_get_users', 'filter_users_by_agencies');
-
-	/* 
-    * remove default roles if agencyadmin user login it can add only agencyadmin/subscriber 
-	*/
 }
+
+/* 
+* this filter "pre_get_users" for display list of all users for perticular agency
+*/
+add_filter('pre_get_users', 'filter_users_by_agencies');
 
 
 /*
@@ -85,83 +81,32 @@ if($check_userrole == "agencyadmin"){
 * agencies list page of administrator and user page of agencyadmin 
 */	
 
-add_filter( 'login_redirect', 'my_login_redirect', 10, 3 );
+add_filter( 'login_redirect', 'fellow_login_redirect', 10, 3 );
 
 /*
 * This hook will use to redirect url when any user will access any other page by url 
 * agencies list page of administrator and user page of agencyadmin 
 */
-add_action('template_redirect', 'custome_url_redirect');
+add_action('template_redirect', 'fellow_custome_url_redirect');
 
 /*
-* This hook will use to Add logo on login page of wordpress
+* This hook will use to style of login page of wordpress/fellow admin
 *  
 */
-function my_login_logo() 
-{ ?>
-	<style type="text/css">
-	/* css of login page */
-	#login h1 a, .login h1 a {
-	height:65px;
-	width:320px;
-	background-size: 320px 65px;
-	background-repeat: no-repeat;
-    	padding-bottom: 30px;
+add_action( 'login_enqueue_scripts', 'fellow_login_page_style' );
 
-    }
-	.login-action-login{
-		background-color: #3a90b3;
-	}
-	.login-action-login .fellow_logo{
-		position: absolute;
-		top: 22%;
-		left: 41%;
-		color: #0f0f0f;
-		text-transform: uppercase;
-		font-size: 36px;
+/*
+* This hook will use to add logo and custome text on login page of wordpress/fellow admin
+*  
+*/
+add_filter( 'login_form', 'fellow_login_logo_title' );
 
-	}
-	.login .button-primary {
-		float: none!important;
-		margin-top: 10px!important;
-		width: 100%;
-	}
-	.login-action-login #login {
-		width: 500px;
-		padding: 8% 0 0;
-		margin: auto;
-	}
-	.login-action-login #backtoblog{
-		display:none;
-	}
-	.login-action-login .button.button-large {
-		height: 45px!important;
+/*
+* This hook will use  for block users 
+* 
+*/
+add_filter( 'authenticate', 'fellow_block_user', 30, 3 );
 
-	}
-	.login-action-login form{
-		border-radius: 18px!important;
-		position: relative;
-	}
-	.login-action-login .forgetmenot{
-		margin-top: 20px;
+?>
 
-	}
-	.fellow_logo{
-		color:#fff!important;
-	}
-	.login-action-login #nav{
-		float: right;
-		position: absolute;
-		right: 0;
-		bottom: 100px;
-	}
-	.login-action-login #login{
-		position: relative;
-	}
-	#login h1 a, .login h1 a {
-    background-image: url(<?php echo get_stylesheet_directory_uri(); ?>/images/site-login-logo.png);
-    }    
-	</style>
-    <h1 class="fellow_logo">Fellow Admin</h1>
-<?php }
-add_action( 'login_enqueue_scripts', 'my_login_logo' );
+
