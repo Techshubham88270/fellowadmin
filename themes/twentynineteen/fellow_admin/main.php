@@ -11,7 +11,7 @@ require get_template_directory() . '/fellow_admin/custom_functions.php';
 function fellow_main_admin_style() {
         wp_register_style( 'custom_wp_admin_css', get_template_directory_uri() . '/fellow_admin/assets/main_style.css', false, '1.0.0' );
         wp_enqueue_style( 'custom_wp_admin_css' );
-        wp_enqueue_script( 'custome_jquery', "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js", array(), '1.1', true );
+        wp_enqueue_script( 'custome_jquery_', get_template_directory_uri() . '/fellow_admin/assets/js/custome_script.js', array(), '1.1', true );
 }
 add_action( 'admin_enqueue_scripts', 'fellow_main_admin_style' );
 
@@ -106,7 +106,8 @@ add_filter( 'login_form', 'fellow_login_logo_title' );
 * 
 */
 add_filter( 'authenticate', 'fellow_block_user', 30, 3 );
-
 ?>
+
+
 
 
