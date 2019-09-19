@@ -1,0 +1,9 @@
+[Sep 16, 2019 05:48:18 0-error] [0atcirw5p6] Error #4001: Unable to successfully generate ZIP archive. Backup FAILED. See logs above for more information.
+[Sep 16, 2019 05:48:18 0-error] [0atcirw5p6] Failed function `backup_zip_files`. Backup terminated.
+[Sep 16, 2019 05:48:18 0-error] [0atcirw5p6] Error #45443554: Unable to send error email with WordPress wp_mail(). Verify WordPress & Server settings.
+[Sep 16, 2019 05:48:23 0-error] [w9ipa69xub] Error #4001: Unable to successfully generate ZIP archive. Backup FAILED. See logs above for more information.
+[Sep 16, 2019 05:48:23 0-error] [w9ipa69xub] Failed function `backup_zip_files`. Backup terminated.
+[Sep 16, 2019 05:48:23 0-error] [w9ipa69xub] Error #45443554: Unable to send error email with WordPress wp_mail(). Verify WordPress & Server settings.
+[Sep 16, 2019 05:49:02 0-error] [zc0b9ha8k0] Error #4001: Unable to successfully generate ZIP archive. Backup FAILED. See logs above for more information.
+[Sep 16, 2019 05:49:02 0-error] [zc0b9ha8k0] Failed function `backup_zip_files`. Backup terminated.
+[Sep 16, 2019 05:49:02 0-error] [zc0b9ha8k0] Error #45443554: Unable to send error email with WordPress wp_mail(). Verify WordPress & Server settings.

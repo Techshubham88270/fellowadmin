@@ -1,0 +1,183 @@
+{"event":"message","time":1568612887,"u":"30","run":"0.53","mem":"25.01","data":"Pong! Server replied."}
+{"event":"details","time":1568612889,"u":"20","run":"0.07","mem":"20.80","data":"--- New PHP process."}
+{"event":"details","time":1568612889,"u":"20","run":"0.07","mem":"20.80","data":"Checking max PHP execution time settings."}
+{"event":"details","time":1568612889,"u":"20","run":"0.07","mem":"20.80","data":"Skipped attempting to override max PHP execution time based on settings."}
+{"event":"details","time":1568612889,"u":"20","run":"0.07","mem":"20.80","data":"Reported PHP execution time - Configured: 30; Original: 30; Current: 30"}
+{"event":"details","time":1568612889,"u":"20","run":"0.07","mem":"20.80","data":"Attempted to set PHP memory limit to user defined WP_MAX_MEMORY_LIMIT (256M) or over-ridden value"}
+{"event":"details","time":1568612889,"u":"20","run":"0.07","mem":"20.80","data":"Reported PHP memory limits - Configured: 128M; Original: 128M; Current: 256M"}
+{"event":"message","time":1568612889,"u":"20","run":"0.07","mem":"20.80","data":"Running process for serial `0atcirw5p6`..."}
+{"event":"details","time":1568612889,"u":"21","run":"0.08","mem":"22.13","data":"About to load fileoptions data for serial `0atcirw5p6`."}
+{"event":"details","time":1568612889,"u":"21","run":"0.09","mem":"22.19","data":"Fileoptions instance #39."}
+{"event":"details","time":1568612889,"u":"21","run":"0.09","mem":"22.19","data":"Created fileoptions lock file `0atcirw5p6.txt.lock` with ID: 5d7f221934e3f0.16606453."}
+{"event":"details","time":1568612889,"u":"21","run":"0.09","mem":"22.20","data":"Fileoptions load using 0.02 MB of memory."}
+{"event":"details","time":1568612889,"u":"21","run":"0.09","mem":"22.20","data":"Fileoptions data loaded."}
+{"event":"finishAction","time":1568612889,"u":"21","run":"0.09","mem":"22.20","data":"cronPass"}
+{"event":"details","time":1568612889,"u":"21","run":"0.09","mem":"22.22","data":"Fileoptions `0atcirw5p6.txt` saved. 7280 bytes written."}
+{"event":"details","time":1568612889,"u":"21","run":"0.09","mem":"22.20","data":"Found next step to run: `backup_create_database_dump`."}
+{"event":"details","time":1568612889,"u":"21","run":"0.09","mem":"22.20","data":"Peak memory usage: 22.291 MB"}
+{"event":"details","time":1568612889,"u":"21","run":"0.09","mem":"22.20","data":"-----"}
+{"event":"details","time":1568612889,"u":"21","run":"0.09","mem":"22.20","data":"Starting step function `backup_create_database_dump`. Attempt #1."}
+{"event":"startFunction","time":1568612889,"u":"21","run":"0.09","mem":"22.20","data":"{\"function\":\"backup_create_database_dump\",\"title\":\"Backing up database\"}"}
+{"event":"milestone","time":1568612889,"u":"21","run":"0.09","mem":"22.20","data":"start_database"}
+{"event":"message","time":1568612889,"u":"21","run":"0.09","mem":"22.20","data":"Starting database backup process."}
+{"event":"details","time":1568612889,"u":"21","run":"0.09","mem":"22.36","data":"PHP-based mysqldump (if applicable) max rows per select set to 1000."}
+{"event":"details","time":1568612889,"u":"21","run":"0.09","mem":"22.37","data":"Database host for dumping: `localhost`"}
+{"event":"details","time":1568612889,"u":"21","run":"0.09","mem":"22.37","data":"Loading mysqlbuddy library."}
+{"event":"details","time":1568612889,"u":"21","run":"0.09","mem":"22.37","data":"Mysql server default directories: `\/usr\/bin\/,\/usr\/bin\/mysql\/,\/usr\/local\/bin\/`"}
+{"event":"details","time":1568612889,"u":"21","run":"0.09","mem":"22.37","data":"mysqlbuddy: Force method of `1` passed."}
+{"event":"message","time":1568612889,"u":"21","run":"0.09","mem":"22.37","data":"mysqlbuddy: Settings overriding automatic detection of available database dump methods. Using forced override methods: `php`."}
+{"event":"message","time":1568612889,"u":"21","run":"0.09","mem":"22.37","data":"mysqlbuddy: Detected database dump methods: `php`."}
+{"event":"details","time":1568612889,"u":"21","run":"0.09","mem":"22.37","data":"If applicable, breaking up with max execution time `30` seconds."}
+{"event":"details","time":1568612889,"u":"22","run":"0.09","mem":"22.37","data":"This server's mariadb version: `10.3.16`."}
+{"event":"milestone","time":1568612889,"u":"22","run":"0.09","mem":"22.37","data":"start_database"}
+{"event":"message","time":1568612889,"u":"22","run":"0.09","mem":"22.37","data":"Starting database dump procedure."}
+{"event":"details","time":1568612889,"u":"22","run":"0.09","mem":"22.37","data":"mysqlbuddy: Output directory: `\/opt\/lampp\/htdocs\/fellowadmin\/wp-content\/uploads\/backupbuddy_temp\/0atcirw5p6\/`."}
+{"event":"details","time":1568612889,"u":"22","run":"0.09","mem":"22.37","data":"Dumping single table `wp_posts`."}
+{"event":"details","time":1568612889,"u":"22","run":"0.09","mem":"22.37","data":"Preparing to dump using available method(s) by priority. Methods: `php`"}
+{"event":"details","time":1568612889,"u":"22","run":"0.09","mem":"22.37","data":"mysqlbuddy: Attempting dump method `php`."}
+{"event":"details","time":1568612889,"u":"22","run":"0.09","mem":"22.38","data":"Loading DB kicker for use leter in case database goes away."}
+{"event":"details","time":1568612889,"u":"22","run":"0.09","mem":"22.39","data":"Database kicker loaded. Database object class: `wpdb` with database of type `mysqli`."}
+{"event":"details","time":1568612889,"u":"22","run":"0.09","mem":"22.39","data":"Dumping database table `wp_posts`. Max rows per select: 1000. Starting at row `0`."}
+{"event":"startTableDump","time":1568612889,"u":"22","run":"0.09","mem":"22.39","data":"wp_posts"}
+{"event":"details","time":1568612889,"u":"22","run":"0.09","mem":"22.39","data":"SQL dump file `\/opt\/lampp\/htdocs\/fellowadmin\/wp-content\/uploads\/backupbuddy_temp\/0atcirw5p6\/wp_posts.sql`."}
+{"event":"details","time":1568612889,"u":"22","run":"0.09","mem":"22.39","data":"mysqlbuddy: PHP-based database dump with max execution time for this run: 30 seconds."}
+{"event":"sqlFile","time":1568612889,"u":"22","run":"0.09","mem":"22.39","data":"wp_posts.sql"}
+{"event":"details","time":1568612889,"u":"22","run":"0.09","mem":"22.43","data":"Got `8` rows from `wp_posts` of `1000` max."}
+{"event":"details","time":1568612889,"u":"22","run":"0.09","mem":"22.46","data":"Dumped `8` rows total from `wp_posts`. No rows remain."}
+{"event":"details","time":1568612889,"u":"22","run":"0.09","mem":"22.46","data":"Pinging mysqli."}
+{"event":"details","time":1568612889,"u":"22","run":"0.09","mem":"22.46","data":"Database Server connection status verified."}
+{"event":"details","time":1568612889,"u":"22","run":"0.09","mem":"22.46","data":"Finished dumping database table `wp_posts`."}
+{"event":"finishTableDump","time":1568612889,"u":"22","run":"0.09","mem":"22.46","data":"wp_posts"}
+{"event":"details","time":1568612889,"u":"22","run":"0.09","mem":"22.46","data":"Database SQL dump file (wp_posts.sql) size: 11 KB"}
+{"event":"sqlSize","time":1568612889,"u":"22","run":"0.09","mem":"22.46","data":"11375"}
+{"event":"details","time":1568612889,"u":"22","run":"0.09","mem":"22.46","data":"About to flush..."}
+{"event":"details","time":1568612889,"u":"22","run":"0.09","mem":"22.46","data":"Finished PHP based SQL dump method. Ran for 0.002 sec."}
+{"event":"details","time":1568612889,"u":"22","run":"0.09","mem":"22.45","data":"mysqlbuddy: Dump method `php` completed successfully."}
+{"event":"milestone","time":1568612889,"u":"22","run":"0.09","mem":"22.45","data":"finish_database"}
+{"event":"message","time":1568612889,"u":"22","run":"0.09","mem":"22.45","data":"Database dump procedure succeeded."}
+{"event":"details","time":1568612889,"u":"22","run":"0.09","mem":"22.46","data":"Fileoptions `0atcirw5p6.txt` saved. 7320 bytes written."}
+{"event":"details","time":1568612889,"u":"22","run":"0.09","mem":"22.45","data":"Finished function `backup_create_database_dump`. Peak memory usage: 22.589 MB with BackupBuddy v8.3.3.1"}
+{"event":"finishFunction","time":1568612889,"u":"22","run":"0.09","mem":"22.45","data":"{\"function\":\"backup_create_database_dump\"}"}
+{"event":"details","time":1568612889,"u":"22","run":"0.09","mem":"22.45","data":"-----"}
+{"event":"details","time":1568612889,"u":"22","run":"0.09","mem":"22.45","data":"Closing & unlocking fileoptions."}
+{"event":"warnings","time":1568612889,"u":"22","run":"0.09","mem":"22.44","data":"Warning #438943984983. This warning may be okay and ignored. $this->_backup still appears to be set. Still a fileoptions object? May result in race condition issues if fileoptions still open and\/or locked. Set = empty string to verify it shuts down properly prior to calling this function."}
+{"event":"details","time":1568612889,"u":"22","run":"0.09","mem":"22.44","data":"Scheduling Cron for `0atcirw5p6`."}
+{"event":"details","time":1568612889,"u":"22","run":"0.09","mem":"22.45","data":"Database kicker loaded. Database object class: `wpdb` with database of type `mysqli`."}
+{"event":"details","time":1568612889,"u":"22","run":"0.09","mem":"22.44","data":"Pinging mysqli."}
+{"event":"details","time":1568612889,"u":"22","run":"0.09","mem":"22.44","data":"Database Server connection status verified."}
+{"event":"details","time":1568612889,"u":"22","run":"0.09","mem":"22.45","data":"Scheduling next step to run at `1568612889` (localized time: Sep 16, 2019 5:48:09 am), pushed to the top, with cron tag `backupbuddy_cron` to run method `process_backup` and serial arguments `0atcirw5p6`."}
+{"event":"details","time":1568612889,"u":"26","run":"0.13","mem":"22.38","data":"Next step scheduled."}
+{"event":"startAction","time":1568612889,"u":"26","run":"0.13","mem":"22.38","data":"cronPass"}
+{"event":"cronParams","time":1568612889,"u":"26","run":"0.13","mem":"22.38","data":"eyJ0aW1lIjoxNTY4NjEyODg5LCJ0YWciOiJiYWNrdXBidWRkeV9jcm9uIiwibWV0aG9kIjoicHJvY2Vzc19iYWNrdXAiLCJhcmdzIjpbIjBhdGNpcnc1cDYiXX0="}
+{"event":"details","time":1568612889,"u":"29","run":"0.16","mem":"22.37","data":"Not calling spawn_cron()."}
+{"event":"details","time":1568612889,"u":"29","run":"0.16","mem":"22.37","data":"About to run next step (backup_create_database_dump expected). If the backup does not proceed within 15 seconds then something is interfering with the WordPress CRON system such as: server loopback issues, caching plugins, scheduling plugins, another plugin using all available cron time, or another BackupBuddy process in progress (file transfers, other backups, Stash Live backup) taking up all cron time. Try disabling other plugins to see if it resolves issue.  Check the Server Information page cron section to see if the next BackupBuddy step is scheduled to run. Enable \"Classic\" backup mode on the \"Settings\" page to rule out non-cron issues. Additionally you may verify no other backup processes are trying to run at the same time by verifying there is not an existing backup process listed in the cron hogging the cron process."}
+{"event":"details","time":1568612889,"u":"29","run":"0.16","mem":"22.37","data":"Completed step function `backup_create_database_dump`."}
+{"event":"details","time":1568612893,"u":"44","run":"0.08","mem":"20.80","data":"--- New PHP process."}
+{"event":"details","time":1568612893,"u":"44","run":"0.08","mem":"20.80","data":"Checking max PHP execution time settings."}
+{"event":"details","time":1568612893,"u":"44","run":"0.08","mem":"20.80","data":"Skipped attempting to override max PHP execution time based on settings."}
+{"event":"details","time":1568612893,"u":"44","run":"0.08","mem":"20.80","data":"Reported PHP execution time - Configured: 30; Original: 30; Current: 30"}
+{"event":"details","time":1568612893,"u":"44","run":"0.08","mem":"20.80","data":"Attempted to set PHP memory limit to user defined WP_MAX_MEMORY_LIMIT (256M) or over-ridden value"}
+{"event":"details","time":1568612893,"u":"44","run":"0.08","mem":"20.80","data":"Reported PHP memory limits - Configured: 128M; Original: 128M; Current: 256M"}
+{"event":"message","time":1568612893,"u":"44","run":"0.08","mem":"20.80","data":"Running process for serial `0atcirw5p6`..."}
+{"event":"details","time":1568612893,"u":"45","run":"0.10","mem":"22.13","data":"About to load fileoptions data for serial `0atcirw5p6`."}
+{"event":"details","time":1568612893,"u":"45","run":"0.10","mem":"22.19","data":"Fileoptions instance #39."}
+{"event":"details","time":1568612893,"u":"45","run":"0.10","mem":"22.19","data":"Created fileoptions lock file `0atcirw5p6.txt.lock` with ID: 5d7f221d7007e1.56237744."}
+{"event":"details","time":1568612893,"u":"45","run":"0.10","mem":"22.21","data":"Fileoptions load using 0.02 MB of memory."}
+{"event":"details","time":1568612893,"u":"45","run":"0.10","mem":"22.21","data":"Fileoptions data loaded."}
+{"event":"finishAction","time":1568612893,"u":"45","run":"0.10","mem":"22.21","data":"cronPass"}
+{"event":"details","time":1568612893,"u":"46","run":"0.10","mem":"22.22","data":"Fileoptions `0atcirw5p6.txt` saved. 7364 bytes written."}
+{"event":"details","time":1568612893,"u":"46","run":"0.10","mem":"22.21","data":"Found next step to run: `backup_create_database_dump`."}
+{"event":"details","time":1568612893,"u":"46","run":"0.10","mem":"22.21","data":"Peak memory usage: 22.295 MB"}
+{"event":"details","time":1568612893,"u":"46","run":"0.10","mem":"22.21","data":"-----"}
+{"event":"details","time":1568612893,"u":"46","run":"0.10","mem":"22.21","data":"Starting step function `backup_create_database_dump`. Attempt #1."}
+{"event":"startFunction","time":1568612893,"u":"46","run":"0.10","mem":"22.21","data":"{\"function\":\"backup_create_database_dump\",\"title\":\"Backing up database\"}"}
+{"event":"milestone","time":1568612893,"u":"46","run":"0.10","mem":"22.21","data":"start_database"}
+{"event":"message","time":1568612893,"u":"46","run":"0.10","mem":"22.21","data":"Starting database backup process."}
+{"event":"details","time":1568612893,"u":"46","run":"0.10","mem":"22.36","data":"PHP-based mysqldump (if applicable) max rows per select set to 1000."}
+{"event":"details","time":1568612893,"u":"46","run":"0.10","mem":"22.37","data":"Database host for dumping: `localhost`"}
+{"event":"details","time":1568612893,"u":"46","run":"0.10","mem":"22.37","data":"Loading mysqlbuddy library."}
+{"event":"details","time":1568612893,"u":"46","run":"0.10","mem":"22.37","data":"Mysql server default directories: `\/usr\/bin\/,\/usr\/bin\/mysql\/,\/usr\/local\/bin\/`"}
+{"event":"details","time":1568612893,"u":"46","run":"0.10","mem":"22.37","data":"mysqlbuddy: Force method of `1` passed."}
+{"event":"message","time":1568612893,"u":"46","run":"0.10","mem":"22.37","data":"mysqlbuddy: Settings overriding automatic detection of available database dump methods. Using forced override methods: `php`."}
+{"event":"message","time":1568612893,"u":"46","run":"0.10","mem":"22.37","data":"mysqlbuddy: Detected database dump methods: `php`."}
+{"event":"details","time":1568612893,"u":"46","run":"0.10","mem":"22.37","data":"If applicable, breaking up with max execution time `30` seconds."}
+{"event":"details","time":1568612893,"u":"46","run":"0.10","mem":"22.38","data":"This server's mariadb version: `10.3.16`."}
+{"event":"milestone","time":1568612893,"u":"46","run":"0.10","mem":"22.38","data":"start_database"}
+{"event":"message","time":1568612893,"u":"46","run":"0.10","mem":"22.38","data":"Starting database dump procedure."}
+{"event":"details","time":1568612893,"u":"46","run":"0.10","mem":"22.38","data":"mysqlbuddy: Output directory: `\/opt\/lampp\/htdocs\/fellowadmin\/wp-content\/uploads\/backupbuddy_temp\/0atcirw5p6\/`."}
+{"event":"details","time":1568612893,"u":"46","run":"0.10","mem":"22.38","data":"Dumping single table `wp_postmeta`."}
+{"event":"details","time":1568612893,"u":"46","run":"0.10","mem":"22.38","data":"Preparing to dump using available method(s) by priority. Methods: `php`"}
+{"event":"details","time":1568612893,"u":"46","run":"0.10","mem":"22.38","data":"mysqlbuddy: Attempting dump method `php`."}
+{"event":"details","time":1568612893,"u":"46","run":"0.10","mem":"22.38","data":"Loading DB kicker for use leter in case database goes away."}
+{"event":"details","time":1568612893,"u":"46","run":"0.10","mem":"22.39","data":"Database kicker loaded. Database object class: `wpdb` with database of type `mysqli`."}
+{"event":"details","time":1568612893,"u":"46","run":"0.10","mem":"22.39","data":"Dumping database table `wp_postmeta`. Max rows per select: 1000. Starting at row `0`."}
+{"event":"startTableDump","time":1568612893,"u":"46","run":"0.10","mem":"22.39","data":"wp_postmeta"}
+{"event":"details","time":1568612893,"u":"46","run":"0.10","mem":"22.39","data":"SQL dump file `\/opt\/lampp\/htdocs\/fellowadmin\/wp-content\/uploads\/backupbuddy_temp\/0atcirw5p6\/wp_postmeta.sql`."}
+{"event":"details","time":1568612893,"u":"46","run":"0.10","mem":"22.39","data":"mysqlbuddy: PHP-based database dump with max execution time for this run: 30 seconds."}
+{"event":"sqlFile","time":1568612893,"u":"46","run":"0.10","mem":"22.39","data":"wp_postmeta.sql"}
+{"event":"details","time":1568612893,"u":"46","run":"0.10","mem":"22.40","data":"Got `6` rows from `wp_postmeta` of `1000` max."}
+{"event":"details","time":1568612893,"u":"46","run":"0.11","mem":"22.40","data":"Dumped `6` rows total from `wp_postmeta`. No rows remain."}
+{"event":"details","time":1568612893,"u":"46","run":"0.11","mem":"22.40","data":"Pinging mysqli."}
+{"event":"details","time":1568612893,"u":"46","run":"0.11","mem":"22.40","data":"Database Server connection status verified."}
+{"event":"details","time":1568612893,"u":"46","run":"0.11","mem":"22.40","data":"Finished dumping database table `wp_postmeta`."}
+{"event":"finishTableDump","time":1568612893,"u":"46","run":"0.11","mem":"22.40","data":"wp_postmeta"}
+{"event":"details","time":1568612893,"u":"46","run":"0.11","mem":"22.40","data":"Database SQL dump file (wp_postmeta.sql) size: 1 KB"}
+{"event":"sqlSize","time":1568612893,"u":"46","run":"0.11","mem":"22.40","data":"1091"}
+{"event":"details","time":1568612893,"u":"46","run":"0.11","mem":"22.40","data":"About to flush..."}
+{"event":"details","time":1568612893,"u":"46","run":"0.11","mem":"22.40","data":"Finished PHP based SQL dump method. Ran for 0.003 sec."}
+{"event":"details","time":1568612893,"u":"46","run":"0.11","mem":"22.40","data":"mysqlbuddy: Dump method `php` completed successfully."}
+{"event":"milestone","time":1568612893,"u":"46","run":"0.11","mem":"22.40","data":"finish_database"}
+{"event":"message","time":1568612893,"u":"46","run":"0.11","mem":"22.40","data":"Database dump procedure succeeded."}
+{"event":"details","time":1568612893,"u":"46","run":"0.11","mem":"22.41","data":"Fileoptions `0atcirw5p6.txt` saved. 7404 bytes written."}
+{"event":"details","time":1568612893,"u":"46","run":"0.11","mem":"22.40","data":"Finished function `backup_create_database_dump`. Peak memory usage: 22.591 MB with BackupBuddy v8.3.3.1"}
+{"event":"finishFunction","time":1568612893,"u":"46","run":"0.11","mem":"22.40","data":"{\"function\":\"backup_create_database_dump\"}"}
+{"event":"details","time":1568612893,"u":"46","run":"0.11","mem":"22.40","data":"-----"}
+{"event":"details","time":1568612893,"u":"46","run":"0.11","mem":"22.40","data":"Closing & unlocking fileoptions."}
+{"event":"warnings","time":1568612893,"u":"46","run":"0.11","mem":"22.40","data":"Warning #438943984983. This warning may be okay and ignored. $this->_backup still appears to be set. Still a fileoptions object? May result in race condition issues if fileoptions still open and\/or locked. Set = empty string to verify it shuts down properly prior to calling this function."}
+{"event":"details","time":1568612893,"u":"46","run":"0.11","mem":"22.40","data":"Scheduling Cron for `0atcirw5p6`."}
+{"event":"details","time":1568612893,"u":"46","run":"0.11","mem":"22.40","data":"Database kicker loaded. Database object class: `wpdb` with database of type `mysqli`."}
+{"event":"details","time":1568612893,"u":"46","run":"0.11","mem":"22.40","data":"Pinging mysqli."}
+{"event":"details","time":1568612893,"u":"46","run":"0.11","mem":"22.40","data":"Database Server connection status verified."}
+{"event":"details","time":1568612893,"u":"46","run":"0.11","mem":"22.40","data":"Scheduling next step to run at `1568612893` (localized time: Sep 16, 2019 5:48:13 am), pushed to the top, with cron tag `backupbuddy_cron` to run method `process_backup` and serial arguments `0atcirw5p6`."}
+{"event":"details","time":1568612893,"u":"52","run":"0.16","mem":"22.38","data":"Next step scheduled."}
+{"event":"startAction","time":1568612893,"u":"52","run":"0.16","mem":"22.38","data":"cronPass"}
+{"event":"cronParams","time":1568612893,"u":"52","run":"0.16","mem":"22.38","data":"eyJ0aW1lIjoxNTY4NjEyODkzLCJ0YWciOiJiYWNrdXBidWRkeV9jcm9uIiwibWV0aG9kIjoicHJvY2Vzc19iYWNrdXAiLCJhcmdzIjpbIjBhdGNpcnc1cDYiXX0="}
+{"event":"details","time":1568612893,"u":"56","run":"0.20","mem":"22.37","data":"Not calling spawn_cron()."}
+{"event":"details","time":1568612893,"u":"56","run":"0.20","mem":"22.37","data":"About to run next step (backup_zip_files expected). If the backup does not proceed within 15 seconds then something is interfering with the WordPress CRON system such as: server loopback issues, caching plugins, scheduling plugins, another plugin using all available cron time, or another BackupBuddy process in progress (file transfers, other backups, Stash Live backup) taking up all cron time. Try disabling other plugins to see if it resolves issue.  Check the Server Information page cron section to see if the next BackupBuddy step is scheduled to run. Enable \"Classic\" backup mode on the \"Settings\" page to rule out non-cron issues. Additionally you may verify no other backup processes are trying to run at the same time by verifying there is not an existing backup process listed in the cron hogging the cron process."}
+{"event":"details","time":1568612893,"u":"56","run":"0.20","mem":"22.37","data":"Completed step function `backup_create_database_dump`."}
+{"event":"details","time":1568612898,"u":"65","run":"0.08","mem":"20.80","data":"--- New PHP process."}
+{"event":"details","time":1568612898,"u":"65","run":"0.08","mem":"20.80","data":"Checking max PHP execution time settings."}
+{"event":"details","time":1568612898,"u":"65","run":"0.08","mem":"20.80","data":"Skipped attempting to override max PHP execution time based on settings."}
+{"event":"details","time":1568612898,"u":"65","run":"0.08","mem":"20.80","data":"Reported PHP execution time - Configured: 30; Original: 30; Current: 30"}
+{"event":"details","time":1568612898,"u":"65","run":"0.08","mem":"20.80","data":"Attempted to set PHP memory limit to user defined WP_MAX_MEMORY_LIMIT (256M) or over-ridden value"}
+{"event":"details","time":1568612898,"u":"65","run":"0.08","mem":"20.80","data":"Reported PHP memory limits - Configured: 128M; Original: 128M; Current: 256M"}
+{"event":"message","time":1568612898,"u":"65","run":"0.08","mem":"20.80","data":"Running process for serial `0atcirw5p6`..."}
+{"event":"details","time":1568612898,"u":"66","run":"0.09","mem":"22.13","data":"About to load fileoptions data for serial `0atcirw5p6`."}
+{"event":"details","time":1568612898,"u":"66","run":"0.09","mem":"22.19","data":"Fileoptions instance #39."}
+{"event":"details","time":1568612898,"u":"66","run":"0.09","mem":"22.19","data":"Created fileoptions lock file `0atcirw5p6.txt.lock` with ID: 5d7f2222a2d962.36296237."}
+{"event":"details","time":1568612898,"u":"66","run":"0.09","mem":"22.21","data":"Fileoptions load using 0.02 MB of memory."}
+{"event":"details","time":1568612898,"u":"66","run":"0.09","mem":"22.21","data":"Fileoptions data loaded."}
+{"event":"finishAction","time":1568612898,"u":"66","run":"0.09","mem":"22.21","data":"cronPass"}
+{"event":"details","time":1568612898,"u":"66","run":"0.09","mem":"22.22","data":"Fileoptions `0atcirw5p6.txt` saved. 7448 bytes written."}
+{"event":"details","time":1568612898,"u":"66","run":"0.09","mem":"22.21","data":"Found next step to run: `backup_zip_files`."}
+{"event":"details","time":1568612898,"u":"66","run":"0.09","mem":"22.21","data":"Peak memory usage: 22.295 MB"}
+{"event":"details","time":1568612898,"u":"66","run":"0.09","mem":"22.21","data":"-----"}
+{"event":"details","time":1568612898,"u":"66","run":"0.09","mem":"22.21","data":"Starting step function `backup_zip_files`. Attempt #1."}
+{"event":"startFunction","time":1568612898,"u":"66","run":"0.09","mem":"22.21","data":"{\"function\":\"backup_zip_files\",\"title\":\"Zipping up files\"}"}
+{"event":"milestone","time":1568612898,"u":"66","run":"0.09","mem":"22.21","data":"start_files"}
+{"event":"details","time":1568612898,"u":"66","run":"0.09","mem":"22.21","data":"Backup root: `\/opt\/lampp\/htdocs\/fellowadmin\/wp-content\/uploads\/backupbuddy_temp\/0atcirw5p6\/`."}
+{"event":"details","time":1568612898,"u":"66","run":"0.09","mem":"22.21","data":"Saving meta data to zip comment."}
+{"event":"details","time":1568612898,"u":"67","run":"0.10","mem":"22.21","data":"Zip process reported: Initializing zip archive file: \/opt\/lampp\/htdocs\/fellowadmin\/wp-content\/uploads\/backupbuddy_backups\/temp_zip_0atcirw5p6\/backup-localhost_fellowadmin-2019_09_16-05_48am-db-0atcirw5p6.zip"}
+{"event":"details","time":1568612898,"u":"67","run":"0.10","mem":"22.21","data":"Zip process reported: Initialized zip archive file"}
+{"event":"details","time":1568612898,"u":"67","run":"0.10","mem":"22.21","data":"Failed to add virtual file with any nominated method."}
+{"event":"details","time":1568612898,"u":"67","run":"0.10","mem":"22.21","data":"Removing temp data directory."}
+{"event":"details","time":1568612898,"u":"67","run":"0.10","mem":"22.21","data":"Removing temp zip directory."}
+{"event":"error","time":1568612898,"u":"67","run":"0.10","mem":"22.21","data":"Error #4001: Unable to successfully generate ZIP archive. Backup FAILED. See logs above for more information."}
+{"event":"haltScript","time":1568612898,"u":"67","run":"0.10","mem":"22.21","data":""}
+{"event":"error","time":1568612898,"u":"67","run":"0.10","mem":"22.21","data":"Failed function `backup_zip_files`. Backup terminated."}
+{"event":"errorFunction","time":1568612898,"u":"67","run":"0.10","mem":"22.21","data":"backup_zip_files"}
+{"event":"details","time":1568612898,"u":"67","run":"0.10","mem":"22.21","data":"Peak memory usage: 22.295 MB"}
+{"event":"haltScript","time":1568612898,"u":"67","run":"0.10","mem":"22.21","data":""}
+{"event":"details","time":1568612898,"u":"67","run":"0.10","mem":"22.25","data":"Sending email error notification with subject `BackupBuddy Server Error - http:\/\/localhost\/fellowadmin` to recipient(s): `mahendra.choudhary@techinfini.com`."}
+{"event":"error","time":1568612898,"u":"69","run":"0.12","mem":"22.75","data":"Error #45443554: Unable to send error email with WordPress wp_mail(). Verify WordPress & Server settings."}
+{"event":"details","time":1568612898,"u":"76","run":"0.19","mem":"22.73","data":"Rescheduled cron for method `process_backup` as setting to limit single cron per pass enabled. Details: `Array\n(\n    [0] => w9ipa69xub\n)\n`. Reschedule count: `1`. Previous method: `process_backup`."}

@@ -27,7 +27,11 @@ ob_start();
 		update_user_meta( $user_id, 'note', $note );
         // conditional check if user already exist or not
 		if($user){
-			echo $username.' created successfully.';
+			//call this function for display suceess message if any aggency will created.
+			add_agency_message($user_id,$u_action='add',$message_type='success');
+
+			$msg = "Your agency has been created successfully. Your password is: ".$password;
+			wp_mail($user->user_email, "Agency created", $msg);
 			echo '<br>';
 			/**
 			* wp_create_user function set default subscriber role 
@@ -39,8 +43,8 @@ ob_start();
 			$user->add_role( 'agencyadmin' );
 
 		}else{
-			echo $username.' already exist.';
-			echo '<br>';
+			//call this function for display error message if any aggency will already exist.
+			add_agency_message($user_id,$u_action='add',$message_type='error');
 		}
 
 	}
@@ -89,13 +93,77 @@ ob_start();
 				update_user_meta( $user_id, 'action', $action_up );
 				// Update note in user meta
 				update_user_meta( $user_id, 'note', $note_up );
-				
 
-				wp_redirect( get_bloginfo('url')."/wp-admin/admin.php?page=add_new_agency&agency_id=".$user_id, 301 );
-				exit();
+				add_agency_message($user_id,$u_action='update',$message_type='success');
 
+				// wp_redirect( admin_url('/admin.php?page=add_new_agency&agency_id=').$user_id, 301 );
+				// exit();
+
+                   ?>
+                <div class="wrap" id="profile-page">
+					<h1 class="wp-heading-inline">
+					Agency</h1>
+					<a href="<?echo admin_url('admin.php?page=add_new_agency')?>" class="page-title-action">Add New</a>
+					<hr class="wp-header-end">
+					<form id="your-profile" action="" method="post" >
+						<h2>Name</h2>
+						<table class="form-table">
+							<tbody>
+								<tr class="user-user-login-wrap">
+								<th><label for="user_login">Username<span class="description">(required)</span></label></th>
+								<td><input type="text" name="user_login" id="user_login" value="<?echo $user_info->data->user_login?>" class="regular-text"  disabled="disabled" > <span class="description">Usernames cannot be changed.</span></td>
+								</tr>
+								<tr class="user-first-name-wrap">
+								<th><label for="first_name">Name<span class="description">(required)</span></label></th>
+								<td><input type="text" name="ageny_name" id="first_name" value="<?echo $name_up?>" class="regular-text" required></td>
+								</tr>
+							</tbody>
+						</table>
+						<h2>Contact Info</h2>
+						<table class="form-table">
+							<tbody>
+								<tr class="user-email-wrap">
+								<th><label for="email">Email <span class="description">(required)</span></label></th>
+								<td>
+								<input type="email" name="ageny_email" id="email" aria-describedby="email-description" value="<?echo $user_info->data->user_email?>" class="regular-text ltr" email required>
+								</td>
+								</tr>
+								<tr class="user-url-wrap">
+								<th><label for="contact no">Contact Number</label></th>
+								<td><input type="number" name="contact_number" id="number" value="<?echo $contact_up?>" class="regular-text code"></td>
+								</tr>
+								<tr class="user-email-wrap">
+								<th><label for="Registration field">Registration Number <span class="description">(required)</span></label></th>
+								<td>
+								<input type="text" name="registration_number" id="registration_number"  value="<?echo $registration_up?>" class="regular-text ltr" required>
+								</td>
+								</tr>
+								<tr class="user-email-wrap">
+								<th><label for="Actions field">Actions<span class="Actions"></span></label></th>
+								<td>
+								<input type="radio" name="agency_action" value="block" <?if($action_up=='block'){echo "checked";}?>> Block
+								<input type="radio" name="agency_action" value="release" <?if($action_up=='release'){echo "checked";}?>> Release<br>
+								</td>
+								</tr>
+							</tbody>
+						</table>
+						<h2>About Yourself</h2>
+						<table class="form-table">
+							<tbody>
+								<tr class="user-description-wrap">
+								<th><label for="Note">Note</label></th>
+								<td>
+								<textarea name="ageny_note" id="description" rows="3" cols="30"><?echo $note_up ?></textarea>
+								</td>
+								</tr>
+							</tbody>
+						</table>
+						<p class="submit"><input type="submit" name="agency_update" id="submit" class="button button-primary" value="Update"></p>
+					</form>
+				</div>
+                   <?
 	
-	    	}
+	    	}else{
 
 	    	?>
 	    	<div class="wrap" id="profile-page">
@@ -164,6 +232,7 @@ ob_start();
 				</form>
 			</div>
 	    	<?
+	    	}
 
 	    }else
 	    {
@@ -292,6 +361,8 @@ ob_start();
 
 		// Fetch action of agency from user meta
 	    $action=get_user_meta( $user_id, 'action' );
+
+	   
 	    ?>
 	    <table class="form-table">
 	    <!-- input field for add contact field -->
@@ -316,6 +387,7 @@ ob_start();
    *
    * function call in main.php with "edit_user_profile_update" wordpress hook.
    *
+   * Update custome table user data 
    */
 	function update_custom_user_profile_fields( $user_id )
 	{
@@ -325,6 +397,75 @@ ob_start();
 		// Update action in user meta
 		$action = $_POST['agency_action'];
 		update_user_meta( $user_id, 'action', $action );
+
+		$user=get_userdata( $user_id);
+		$user_role=$user->roles[0];
+        // insert register user data in custome "user" table  if register role is 'subscriber'
+			if($user_role="subscriber"){
+				$custome_uid=get_user_meta( $user_id, 'custome_uid' );
+				$email = $_POST['email'];
+				$first_name = $_POST['first_name'];
+				global $wpdb;
+				$table ='user';
+				$data = [ 'email' =>$email,'firstName' =>$first_name]; // NULL value.
+				$where = [ 'id' =>$custome_uid[0] ]; // NULL value in WHERE clause.
+				$wpdb->update(  $table, $data, $where);
+			} 
+	}
+
+	/* 
+	* callback function for add agency id in meta field of current register user
+	* 
+	* function call in main.php with "user_register" wordpress hook.
+	*
+	* Insert new user row in custome table 'user'
+	*/
+	function agencyid_save_inregistered_usermeta( $user_id)  
+	{
+		$current_user = wp_get_current_user();
+		// add agencyid in user meta
+		$agencyid=$_POST['agency_userid'];
+		update_user_meta( $user_id, 'agencyid', $agencyid );
+
+        // add action in user meta
+		$action = $_POST['agency_action'];
+		update_user_meta( $user_id, 'action', $action );
+            //fetch user all data by user id
+			$user=get_userdata( $user_id);
+			//print_r($user);
+			$user_role=$user->roles[0];
+            // insert register user data in custome "user" table  if register role is 'subscriber'
+			if($user_role="subscriber"){
+				global $wpdb;
+				$table ='user';
+				$data = array('firstName' => $user->display_name,'lastName' => 'test','email'=>$user->user_email);
+				$format = array('%s','%d');
+				$wpdb->insert($table,$data,$format);
+				$cus_user_id = $wpdb->insert_id;
+
+
+                // add user id of custome table in user meta 
+				update_user_meta( $user_id, 'custome_uid', $cus_user_id);
+				echo $cus_user_id;
+		} 
+	}
+    
+    /* 
+	* callback function for delete custome user row after delete user from wordpress table 
+	* 
+	* function call in main.php with "delete_user" wordpress hook.
+	*/
+	function fellow_custome_delete_user( $user_id ) 
+	{
+		$user=get_userdata( $user_id);
+		$user_role=$user->roles[0];
+        // Delete register user data in custome "user" table  if register role is 'subscriber'
+			if($user_role="subscriber"){
+				global $wpdb;
+				$table ='user';
+				$custome_uid=get_user_meta( $user_id, 'custome_uid' );
+				$wpdb->delete( $table, array( 'id' =>$custome_uid[0] ) );
+			} 
 	}
 
 	/*this will add column in user list table
@@ -345,13 +486,13 @@ ob_start();
 	function add_column_value_agency( $val, $column_name, $user_id ) 
 	{
 
-		// Fetch agencyid of user from user meta
+		// Fetch agencyid of user from user meta http://localhost/fellowadmin/wp-admin/user-edit.php?user_id='.$agency_id[0]
 		$agency_id=get_user_meta( $user_id, 'agencyid' );
 		$agency_name=get_userdata( $agency_id[0] );
 
 		    switch($column_name) {
 		        case 'name_agency' :
-		            return '<a href="http://localhost/fellowadmin/wp-admin/user-edit.php?user_id='.$agency_id[0].'">'.$agency_name->data->user_login.'</a>';
+		            return '<a href="'.admin_url('user-edit.php?user_id='.$agency_id[0]).'">'.$agency_name->data->user_login.'</a>';
 		            break;
 		           default:
 		    }
@@ -359,6 +500,7 @@ ob_start();
 
 	/* 
 	* callback function for add hidden input field for set agency id
+	*
 	* function call in main.php with "user_new_form" wordpress hook.
 	*/
 	function agencyid_add_field()
@@ -383,21 +525,7 @@ ob_start();
 		<?php
 	}
 
-	/* 
-	* callback function for add agency id in meta field of current register user
-	* function call in main.php with "user_register" wordpress hook.
-	*/
-	function agencyid_save_inregistered_usermeta( $user_id)  
-	{
-		$current_user = wp_get_current_user();
-		// add agencyid in user meta
-		$agencyid=$_POST['agency_userid'];
-		update_user_meta( $user_id, 'agencyid', $agencyid );
-
-        // add action in user meta
-		$action = $_POST['agency_action'];
-		update_user_meta( $user_id, 'action', $action );
-	}
+	
 
 
 
@@ -472,7 +600,8 @@ ob_start();
 	* callback function for redirect url when any user will access any other page by url
 	* agencies list page of administrator and user page of agencyadmin 
 	*/
-	function fellow_custome_url_redirect() {
+	function fellow_custome_url_redirect() 
+	{
 		global $current_user;
 		$current_user = wp_get_current_user();
 		$userrole=$current_user->roles[0];
@@ -557,7 +686,7 @@ ob_start();
 			bottom: 10px;
 		}
 		.login-action-login #login{
-			position: relative;
+			position: relative!important;
 		}
 	    .cus_text{
 	    	position: absolute;
@@ -577,7 +706,7 @@ ob_start();
 			font-size: 14px;
 	    }
 	    .login-action-login form#loginform{
-			position: relative;
+			position: relative!important;
 			margin-top: -100px!important;
 			padding: 100px 24px 46px!important;
 			background: #f5f3f3!important;
@@ -603,7 +732,11 @@ ob_start();
 	function fellow_login_logo_title()
 	{?>
 		<div class="cus_logo">
-			<h2>Fellow Admin</h2>
+			<?if(isset($_GET['userlogin'])&& $_GET['userlogin']=='agency'){
+				echo '<h2>Agency Admin</h2>';
+			}else{
+				echo '<h2>Fellow Admin</h2>';
+			}?>
 			<p class="">Who's knocking ?</p>
 		</div>
 	    <p class="cus_text">Don't have an account</p>
@@ -625,3 +758,44 @@ ob_start();
 			}
 		}
 	}
+
+	/**
+   * This callback function use display message if any new agency will  Add 
+   *
+   * this function use with hook "admin_notices";
+   */
+	function add_agency_message($user_id,$u_action='',$message_type='') {
+			if($user_id){
+				if($u_action=='add'){
+					if($message_type=='success'){
+						?>
+						<div class="notice notice-success is-dismissible">
+						<p><?php _e( 'Agency added successfully!');?></p>
+						</div>
+						<?php
+					}elseif($message_type=='error'){
+                         ?>
+						<div class="notice notice-error is-dismissible">
+						<p><?php _e( 'Agency already exist');?></p>
+						</div>
+						<?php
+					}
+				}elseif($u_action=='update'){
+					if($message_type=='success'){
+						?>
+						<div class="notice notice-success is-dismissible">
+						<p><?php _e( 'Agency updated!');?></p>
+						</div>
+						<?php
+					}elseif($message_type=='error'){
+                         ?>
+						<div class="notice notice-error is-dismissible">
+						<p><?php _e( 'Agency already exist');?></p>
+						</div>
+						<?php
+					}
+
+				}
+		
+			}
+		}

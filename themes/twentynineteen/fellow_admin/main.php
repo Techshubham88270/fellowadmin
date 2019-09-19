@@ -1,17 +1,28 @@
 <?php
-
+ 
 /**
  * Add fellow all callback fuctions 
 */
 require get_template_directory() . '/fellow_admin/custom_functions.php';
 
+
 /**
  * Add external css in admin fuctions main_style.css 
  */
 function fellow_main_admin_style() {
-        wp_register_style( 'custom_wp_admin_css', get_template_directory_uri() . '/fellow_admin/assets/main_style.css', false, '1.0.0' );
-        wp_enqueue_style( 'custom_wp_admin_css' );
-        wp_enqueue_script( 'custome_jquery_', get_template_directory_uri() . '/fellow_admin/assets/js/custome_script.js', array(), '1.1', true );
+	global $current_user;
+	$current_user = wp_get_current_user();
+	$check_userrole=$current_user->roles[0];
+	//add css and js script if agency admin login
+	 if($check_userrole == "agencyadmin"){
+		wp_register_style( 'custom_wp_admin_agencycss', get_template_directory_uri().'/fellow_admin/assets/agency_style.css', false, '1.0.0' );
+		wp_enqueue_style( 'custom_wp_admin_agencycss');
+
+		wp_enqueue_script( 'custome_agency_jquery_', get_template_directory_uri() . '/fellow_admin/assets/js/custome_agency_script.js', array(), '1.1', true );
+	}
+    wp_register_style( 'custom_wp_admin_css', get_template_directory_uri() . '/fellow_admin/assets/main_style.css', false, '1.0.0' );
+    wp_enqueue_style( 'custom_wp_admin_css' );
+    wp_enqueue_script( 'custome_jquery_', get_template_directory_uri() . '/fellow_admin/assets/js/custome_script.js', array(), '1.1', true );
 }
 add_action( 'admin_enqueue_scripts', 'fellow_main_admin_style' );
 
@@ -22,8 +33,6 @@ $check_userrole=$current_user->roles[0];
 /**
 * This function use for register a Agencies menu and sub menus in admin dashboard
 */
-
-
 function agencies_menu_function(){
   add_menu_page('Agencies', 'Agencies', 'manage_options', 'agencies', 'show_all_agencies_list');
   add_submenu_page( 'agencies', 'All Agencies', 'All Agencies', 'manage_options', 'agencies');
@@ -40,6 +49,12 @@ add_action('admin_menu', 'agencies_menu_function');
 add_action( 'edit_user_profile', 'add_custom_user_profile_fields' );
 add_action( 'show_user_profile', 'add_custom_user_profile_fields' );
 add_action( 'edit_user_profile_update', 'update_custom_user_profile_fields' );
+
+/* 
+* Delete register user data in custome "user" table  if register role is 'subscriber'
+*/
+
+add_action( 'delete_user', 'fellow_custome_delete_user' );
 
 
 /*add_filter hook for add column in all users list table
@@ -106,8 +121,9 @@ add_filter( 'login_form', 'fellow_login_logo_title' );
 * 
 */
 add_filter( 'authenticate', 'fellow_block_user', 30, 3 );
-?>
 
-
-
-
+/*
+* This hook will use  for display success message after add agency
+* 
+*/
+add_action( 'admin_notices','add_agency_message');

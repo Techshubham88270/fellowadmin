@@ -33,11 +33,12 @@
 		.profile-php .user-sessions-wrap{
 		display:none;
 		}
-
+    /* css for hide colums of user list page*/
 		.users-php .column-email, 
 		.users-php .column-posts{
 			display:none;
 		}
+
 
 		.user-new-php .user-pass1-wrap{
 			display: none;
@@ -49,3 +50,4 @@
 		#profile-page h3{
 			display: none;
 		}
+	
